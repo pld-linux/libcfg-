@@ -2,7 +2,7 @@ Summary:	Command line and configuration file parsing library
 Summary(pl):	Biblioteka do analizy linii poleceñ i plików konfiguracyjnych
 Name:		libcfg+
 Version:	0.6.2
-Release:	1
+Release:	2
 License:	GPL
 Group:		Libraries
 #Source0Download: http://platon.sk/projects/release_list_page.php?project_id=3
@@ -64,6 +64,7 @@ Statyczna biblioteka libcfg+.
 cp -f /usr/share/automake/config.* .
 %{__autoconf}
 %{__autoheader}
+CFLAGS="%{rpmcflags} -fPIC"
 %configure
 %{__make}
 
