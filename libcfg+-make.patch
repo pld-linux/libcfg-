@@ -1,0 +1,51 @@
+--- libcfg+-0.6.2/src/Makefile.in.orig	2004-02-17 17:37:47.000000000 +0100
++++ libcfg+-0.6.2/src/Makefile.in	2004-04-24 15:21:24.716817056 +0200
+@@ -99,6 +99,7 @@
+ LIBSTATIC   = $(PACKAGE).a
+ LIBDYNAMIC  = $(PACKAGE).so
+ LIBDYNAMICV = $(PACKAGE).so.$(VERSION)
++LIBDYNAMICS = $(PACKAGE).so.0
+ 
+ install_LIB     = $(LIBSTATIC) $(LIBDYNAMICV)
+ 
+--- libcfg+-0.6.2/doc/Makefile.in.orig	2004-02-17 17:37:48.000000000 +0100
++++ libcfg+-0.6.2/doc/Makefile.in	2004-04-24 15:25:05.620234632 +0200
+@@ -294,7 +294,7 @@
+ 		cd $(top_builddir)/doc/man && \
+ 		for p in *.$(MANVOLNUM).gz; do \
+ 			echo "	Installing file $(DESTDIR)$(man3dir)/$$p"; \
+-			$(INSTALL_DATA) $$p $(DESTDIR)$(man3dir)/$$p; \
++			gzip -dc $$p > $(DESTDIR)$(man3dir)/`basename $$p .gz`; \
+ 		done \
+ 	else \
+ 		echo -en "Directroy $(top_builddir)/doc/man not found, "; \
+@@ -343,8 +343,8 @@
+ 		if [ -z "$$destfile" -o "$$destfile" = "x" ]; then \
+ 			destfile="$$i"; \
+ 		else \
+-			echo "	Creating symlink $(DESTDIR)$(man3dir)/$$destfile.gz	<--	$$i.gz"; \
+-			$(LN_S) $$destfile.gz $$i.gz; \
++			echo "	Creating link $(DESTDIR)$(man3dir)/$$destfile	<--	$$i"; \
++			echo ".so $$destfile" > $$i; \
+ 			destfile="x"; \
+ 		fi \
+ 	done
+--- libcfg+-0.6.2/Rules.make.in.orig	2004-02-17 17:37:47.000000000 +0100
++++ libcfg+-0.6.2/Rules.make.in	2004-04-24 15:21:06.357608080 +0200
+@@ -26,6 +26,7 @@
+ LIBSTATIC          = $(PACKAGE).a
+ LIBDYNAMIC         = $(PACKAGE).so
+ LIBDYNAMICV        = $(PACKAGE).so.$(VERSION)
++LIBDYNAMICS        = $(PACKAGE).so.$(VERSION)
+ 
+ install_LIB        = $(LIBSTATIC) $(LIBDYNAMICV)
+ SCRIPTS            =
+@@ -160,7 +161,7 @@
+ 	$(AR) r $@ $(OBJECTS)
+ 
+ $(LIBDYNAMICV):	$(OBJECTS)
+-	$(LD) $(LDFLAGS) -shared -o $@ $(OBJECTS)
++	$(CCLD) $(LDFLAGS) -shared -o $@ $(OBJECTS) -Wl,-soname=$(LIBDYNAMICS)
+ 
+ %.o: %.c $(CONFIG_HEADER)
+ 	@echo '$(COMPILE) -c $<'; \
