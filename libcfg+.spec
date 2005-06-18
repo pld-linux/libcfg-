@@ -1,3 +1,7 @@
+#
+# Conditional build:
+%bcond_without	static_libs # don't build static libraries
+#
 Summary:	Command line and configuration file parsing library
 Summary(pl):	Biblioteka do analizy linii poleceñ i plików konfiguracyjnych
 Name:		libcfg+
@@ -65,7 +69,9 @@ cp -f /usr/share/automake/config.* .
 %{__autoconf}
 %{__autoheader}
 CFLAGS="%{rpmcflags} -fPIC"
-%configure
+%configure \
+	%{!?with_static_libs:--enable-static=no}
+
 %{__make}
 
 %install
@@ -93,6 +99,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/cfg*.h
 %{_mandir}/man3/*
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
+%endif
