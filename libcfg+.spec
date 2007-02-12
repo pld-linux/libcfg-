@@ -3,7 +3,7 @@
 %bcond_without	static_libs # don't build static libraries
 #
 Summary:	Command line and configuration file parsing library
-Summary(pl):	Biblioteka do analizy linii poleceÒ i plikÛw konfiguracyjnych
+Summary(pl.UTF-8):   Biblioteka do analizy linii polece≈Ñ i plik√≥w konfiguracyjnych
 Name:		libcfg+
 Version:	0.6.2
 Release:	2
@@ -27,37 +27,37 @@ data types such as booleans, integers, decimal numbers, strings with
 many additional data type flags (such as multiple values for a single
 option).
 
-%description -l pl
-libcfg+ to biblioteka w C do analizy linii poleceÒ i plikÛw
-konfiguracyjnych. Moøna ustawiaÊ rÛøne specjalne w≥asno∂ci, takie jak
-znaki cytowania, ≥aÒcuch ograniczaj±ce, prefiksy komentarzy w plikach,
-wieloliniowe postfiksy i inne. Biblioteka obs≥uguje wiele typÛw
-danych, takich jak logiczne, liczby ca≥kowite, liczby dziesiÍtne,
-≥aÒcuchy z wieloma dodatkowymi flagami typÛw (takimi jak wiele
-warto∂ci dla jednej opcji).
+%description -l pl.UTF-8
+libcfg+ to biblioteka w C do analizy linii polece≈Ñ i plik√≥w
+konfiguracyjnych. Mo≈ºna ustawiaƒá r√≥≈ºne specjalne w≈Çasno≈õci, takie jak
+znaki cytowania, ≈Ça≈Ñcuch ograniczajƒÖce, prefiksy komentarzy w plikach,
+wieloliniowe postfiksy i inne. Biblioteka obs≈Çuguje wiele typ√≥w
+danych, takich jak logiczne, liczby ca≈Çkowite, liczby dziesiƒôtne,
+≈Ça≈Ñcuchy z wieloma dodatkowymi flagami typ√≥w (takimi jak wiele
+warto≈õci dla jednej opcji).
 
 %package devel
 Summary:	Header files for libcfg+ library
-Summary(pl):	Pliki nag≥Ûwkowe biblioteki libcfg+
+Summary(pl.UTF-8):   Pliki nag≈Ç√≥wkowe biblioteki libcfg+
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for libcfg+ library.
 
-%description devel -l pl
-Pliki nag≥Ûwkowe biblioteki libcfg+.
+%description devel -l pl.UTF-8
+Pliki nag≈Ç√≥wkowe biblioteki libcfg+.
 
 %package static
 Summary:	Static libcfg+ library
-Summary(pl):	Statyczna biblioteka libcfg+
+Summary(pl.UTF-8):   Statyczna biblioteka libcfg+
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static libcfg+ library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka libcfg+.
 
 %prep
