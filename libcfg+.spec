@@ -3,7 +3,7 @@
 %bcond_without	static_libs # don't build static libraries
 #
 Summary:	Command line and configuration file parsing library
-Summary(pl.UTF-8):   Biblioteka do analizy linii poleceń i plików konfiguracyjnych
+Summary(pl.UTF-8):	Biblioteka do analizy linii poleceń i plików konfiguracyjnych
 Name:		libcfg+
 Version:	0.6.2
 Release:	2
@@ -38,7 +38,7 @@ wartości dla jednej opcji).
 
 %package devel
 Summary:	Header files for libcfg+ library
-Summary(pl.UTF-8):   Pliki nagłówkowe biblioteki libcfg+
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libcfg+
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -50,7 +50,7 @@ Pliki nagłówkowe biblioteki libcfg+.
 
 %package static
 Summary:	Static libcfg+ library
-Summary(pl.UTF-8):   Statyczna biblioteka libcfg+
+Summary(pl.UTF-8):	Statyczna biblioteka libcfg+
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
