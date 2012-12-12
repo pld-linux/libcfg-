@@ -9,7 +9,7 @@ Version:	0.6.2
 Release:	3
 License:	GPL
 Group:		Libraries
-#Source0Download: http://platon.sk/projects/release_list_page.php?project_id=3
+#Source0Download: http://opensource.platon.sk/projects/main_page.php?project_id=3
 Source0:	http://platon.sk/upload/_projects/00003/%{name}-%{version}.tar.gz
 # Source0-md5:	e117a2d054c5f5831fdb5ed27c26d767
 Patch0:		%{name}-make.patch
@@ -77,7 +77,7 @@ CFLAGS="%{rpmcflags} -fPIC"
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
+%{__make} -j1 install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
