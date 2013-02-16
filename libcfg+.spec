@@ -80,6 +80,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -j1 install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+# clean docdir
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
