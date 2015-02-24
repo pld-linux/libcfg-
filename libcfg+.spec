@@ -6,7 +6,7 @@ Summary:	Command line and configuration file parsing library
 Summary(pl.UTF-8):	Biblioteka do analizy linii poleceń i plików konfiguracyjnych
 Name:		libcfg+
 Version:	0.6.2
-Release:	3
+Release:	4
 License:	GPL
 Group:		Libraries
 #Source0Download: http://opensource.platon.sk/projects/main_page.php?project_id=3
