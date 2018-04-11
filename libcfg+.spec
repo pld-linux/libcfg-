@@ -1,19 +1,19 @@
 #
 # Conditional build:
-%bcond_without	static_libs # don't build static libraries
+%bcond_without	static_libs	# static library
 #
 Summary:	Command line and configuration file parsing library
 Summary(pl.UTF-8):	Biblioteka do analizy linii poleceń i plików konfiguracyjnych
 Name:		libcfg+
-Version:	0.6.2
-Release:	4
-License:	GPL
+Version:	0.7.0
+Release:	1
+License:	GPL v2+
 Group:		Libraries
-#Source0Download: http://opensource.platon.sk/projects/main_page.php?project_id=3
-Source0:	http://platon.sk/upload/_projects/00003/%{name}-%{version}.tar.gz
-# Source0-md5:	e117a2d054c5f5831fdb5ed27c26d767
+#Source0Download: http://opensource.platon.sk/projects/release_list_page.php?project_id=3
+Source0:	http://opensource.platon.sk/upload/_projects/00003/%{name}-%{version}.tar.gz
+# Source0-md5:	7f8a415e508da4b2b060d3894d4c510a
 Patch0:		%{name}-make.patch
-URL:		http://platon.sk/projects/libcfg+/
+URL:		http://opensource.platon.sk/projects/main_page.php?project_id=3
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -68,17 +68,18 @@ Statyczna biblioteka libcfg+.
 cp -f /usr/share/automake/config.* .
 %{__autoconf}
 %{__autoheader}
-CFLAGS="%{rpmcflags} -fPIC"
-%configure \
-	%{!?with_static_libs:--enable-static=no}
+CFLAGS="%{rpmcflags} -Wall -Wno-shadow -fPIC"
+%configure
 
-%{__make}
+%{__make} \
+	%{!?with_static_libs:LIBSTATIC=}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} -j1 install \
-	DESTDIR=$RPM_BUILD_ROOT
+	DESTDIR=$RPM_BUILD_ROOT \
+	%{!?with_static_libs:LIBSTATIC=}
 
 # clean docdir
 %{__rm} -r $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
@@ -92,18 +93,21 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README TODO
-%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
+%attr(755,root,root) %{_libdir}/libcfg+.so.*.*.*
 
 %files devel
 %defattr(644,root,root,755)
 %doc doc/html/*
-%attr(755,root,root) %{_libdir}/lib*.so
+%attr(755,root,root) %{_libdir}/libcfg+.so
 %{_includedir}/platon
-%{_includedir}/cfg*.h
-%{_mandir}/man3/*
+%{_includedir}/cfg.h
+%{_includedir}/cfg+.h
+%{_mandir}/man3/cfg+.h.3*
+%{_mandir}/man3/cfg_*.3*
+%{_mandir}/man3/libcfg+.3*
 
 %if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libcfg+.a
 %endif
